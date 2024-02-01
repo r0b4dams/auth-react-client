@@ -1,18 +1,18 @@
 import { Button } from "../components/Button";
+import { Navigate } from "react-router-dom";
+import { useFusionAuth } from "@fusionauth/react-sdk";
 
 export const Home: React.FC = (): JSX.Element => {
-  const handleSignup = () => {
-    console.log("signup");
-  };
+  const { isAuthenticated, login, register } = useFusionAuth();
 
-  const handleLogin = () => {
-    console.log("login");
-  };
+  if (isAuthenticated) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
-    <div className="flex flex-col space-y-10">
-      <Button onClick={handleSignup}>Signup</Button>
-      <Button onClick={handleLogin}>Login</Button>
+    <div className="flex flex-col justify-center items-center space-y-10">
+      <Button onClick={() => login()}>Signup</Button>
+      <Button onClick={() => register()}>Login</Button>
     </div>
   );
 };
