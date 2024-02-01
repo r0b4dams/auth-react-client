@@ -8,6 +8,8 @@ export const Profile: React.FC = (): JSX.Element => {
     return <Navigate to="/" />;
   }
 
+  console.log(user);
+
   return (
     <RequireAuth>
       <div>Profile</div>;
