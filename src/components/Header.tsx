@@ -1,13 +1,16 @@
+import { useFusionAuth } from "@fusionauth/react-sdk";
 import { Button } from "./Button";
 
 export const Header: React.FC = (): JSX.Element => {
-  const logout = () => {
-    console.log("logout");
-  };
+  const { isAuthenticated, logout } = useFusionAuth();
 
   return (
     <header className="h-[10vh] flex justify-end items-center px-5">
-      <Button onClick={logout}>Logout</Button>
+      {isAuthenticated && (
+        <div>
+          <Button onClick={() => logout()}>Logout</Button>
+        </div>
+      )}
     </header>
   );
 };
