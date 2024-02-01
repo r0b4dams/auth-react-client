@@ -1,14 +1,9 @@
-import { randomBytes } from "crypto";
-
 export function generateState(): string {
-  const buf = randomBytes(32);
-  return base64URLEncode(buf);
+  const array = new Uint32Array(10);
+  window.crypto.getRandomValues(array);
+  return Array.from(array, dec2hex).join("");
 }
 
-function base64URLEncode(buf: Buffer): string {
-  return buf
-    .toString("base64")
-    .replace(/=/g, "")
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_");
+function dec2hex(d: number) {
+  return d.toString(16).padStart(2, "0");
 }
