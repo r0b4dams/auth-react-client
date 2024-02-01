@@ -5,7 +5,7 @@ export const AppLayout: React.FC = (): JSX.Element => {
   return (
     <>
       <Header />
-      <main className="flex justify-center items-center bg-slate-100">
+      <main className="flex justify-center items-center">
         <Outlet />
       </main>
       <Footer />
