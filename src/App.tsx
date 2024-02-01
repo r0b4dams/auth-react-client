@@ -1,25 +1,29 @@
 import { useEffect, useState } from "react";
+import { FusionAuthProvider, useFusionAuth } from "@fusionauth/react-sdk";
 import { AppRouter } from "./AppRouter";
-import { AuthProvider } from "./lib/AuthClient/AuthProvider";
-import { useAuth } from "./lib/AuthClient/hooks/useAuth";
+import { Loader } from "./components";
 
-const auth_config = {
-  clientId: import.meta.env.VITE_FUSIONAUTH_CLIENT_ID,
+const config = {
+  clientID: import.meta.env.VITE_FUSIONAUTH_CLIENT_ID,
   serverUrl: import.meta.env.VITE_TOKEN_EXCHANGE_URL,
   redirectUri: import.meta.env.VITE_TOKEN_EXCHANGE_REDIRECT_URL,
 };
 
-export const App = () => {
-  const { isLoading } = useAuth();
+const _App_ = () => {
+  const { isLoading } = useFusionAuth();
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setReady(true), 1500);
+    setTimeout(() => setReady(!isLoading), 1500);
   }, [isLoading]);
 
+  return ready ? <AppRouter /> : <Loader />;
+};
+
+export const App = () => {
   return (
-    <AuthProvider {...auth_config}>
-      <AppRouter />
-    </AuthProvider>
+    <FusionAuthProvider {...config}>
+      <_App_ />
+    </FusionAuthProvider>
   );
 };
