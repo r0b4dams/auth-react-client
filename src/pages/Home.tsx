@@ -11,8 +11,8 @@ export const Home: React.FC = (): JSX.Element => {
 
   return (
     <div className="flex flex-col justify-center items-center space-y-10">
-      <Button onClick={() => login()}>Signup</Button>
-      <Button onClick={() => register()}>Login</Button>
+      <Button onClick={() => login()}>Login</Button>
+      <Button onClick={() => register()}>Signup</Button>
     </div>
   );
 };
