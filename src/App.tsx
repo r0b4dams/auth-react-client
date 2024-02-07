@@ -12,7 +12,7 @@ const config = {
   logoutPath: "/auth/logout",
   registerPath: "/auth/register",
   tokenRefreshPath: "/auth/refresh",
-  mePath: "/auth/me",
+  mePath: "/auth/user",
 };
 
 const _App_ = () => {
