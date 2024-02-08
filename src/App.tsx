@@ -20,7 +20,7 @@ const _App_ = () => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setReady(!isLoading), 1500);
+    setTimeout(() => setReady(true), 1500);
   }, [isLoading]);
 
   return ready ? <AppRouter /> : <Loader />;
